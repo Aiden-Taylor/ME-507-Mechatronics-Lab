@@ -1,0 +1,74 @@
+!SESSION 2024-04-11 12:32:49.163 -----------------------------------------------
+eclipse.buildId=Version 1.15.0
+java.version=17.0.8.1
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2024-04-11 12:33:20.114
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2024-04-11 12:33:20.128
+!MESSAGE Log4j2 initialized with config file C:\Users\magoo\OneDrive\Documents\GitHub\ME-507-Mechatronics-Lab\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2024-04-11 12:33:26.735
+!MESSAGE Started RMI Server, listening on port 41337
+!SESSION 2024-04-11 12:41:43.042 -----------------------------------------------
+eclipse.buildId=Version 1.15.0
+java.version=17.0.8.1
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2024-04-11 12:41:53.641
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2024-04-11 12:41:53.643
+!MESSAGE Log4j2 initialized with config file C:\Users\magoo\OneDrive\Documents\GitHub\ME-507-Mechatronics-Lab\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2024-04-11 12:41:57.528
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.core.resources 2 2 2024-04-11 12:43:10.612
+!MESSAGE Save operation warnings.
+!SUBENTRY 1 org.eclipse.core.resources 2 234 2024-04-11 12:43:10.612
+!MESSAGE The project description file (.project) for 'MiniLab0' was missing.  This file contains important information about the project.  A new project description file has been created, but some information about the project may have been lost.
+!SESSION 2024-04-11 12:45:36.353 -----------------------------------------------
+eclipse.buildId=Version 1.15.0
+java.version=17.0.8.1
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2024-04-11 12:45:44.102
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2024-04-11 12:45:44.104
+!MESSAGE Log4j2 initialized with config file C:\Users\magoo\OneDrive\Documents\GitHub\ME-507-Mechatronics-Lab\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2024-04-11 12:45:47.814
+!MESSAGE Started RMI Server, listening on port 41337
+!SESSION 2024-04-11 12:46:32.717 -----------------------------------------------
+eclipse.buildId=Version 1.15.0
+java.version=17.0.8.1
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2024-04-11 12:46:40.533
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2024-04-11 12:46:40.535
+!MESSAGE Log4j2 initialized with config file C:\Users\magoo\OneDrive\Documents\GitHub\ME-507-Mechatronics-Lab\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2024-04-11 12:46:44.280
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.cdt.core 1 0 2024-04-11 12:55:20.213
+!MESSAGE Indexed 'MiniLab0' (25 sources, 82 headers) in 5.77 sec: 5,451 declarations; 29,344 references; 0 unresolved inclusions; 1 syntax errors; 2 unresolved names (0.0057%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2024-04-11 12:56:49.458
+!MESSAGE Indexed 'MiniLab00' (25 sources, 82 headers) in 3.88 sec: 5,451 declarations; 29,344 references; 0 unresolved inclusions; 1 syntax errors; 2 unresolved names (0.0057%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2024-04-11 13:45:26.943
+!MESSAGE Indexed 'MiniLab1' (21 sources, 80 headers) in 3.07 sec: 4,826 declarations; 22,657 references; 0 unresolved inclusions; 1 syntax errors; 2 unresolved names (0.0073%)
