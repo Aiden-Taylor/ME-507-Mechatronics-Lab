@@ -18,6 +18,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "motor_driver.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -96,24 +97,22 @@ int main(void)
     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);
   /* USER CODE END 2 */
-
+    motor_t mot1 = {.duty    = 0,
+					.channel = 1,
+    				.timer = TIM1};
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
     /* USER CODE END WHILE */
-	  TIM1->ARR = 65535;
-	  TIM1->PSC = 8;
-	  TIM1->CCR1 = 65535;
-	  TIM1->CCR2 = 65535;
 
-	  HAL_Delay(1000);
 
-	  TIM1->ARR = 265;
-	  TIM1->PSC = 0;
-	  TIM1->CCR1 = 265;
-	  TIM1->CCR2 = 0;
-	  HAL_Delay(1000);
+	      // Set the duty cycle
+	      set_duty(&mot1, 42);
+
+	      HAL_Delay(1000);
+	      set_duty(&mot1, -42);
+	      HAL_Delay(1000);
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
