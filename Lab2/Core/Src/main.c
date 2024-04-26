@@ -18,11 +18,12 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "motor_driver.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "motor_driver.h"
+#include <stdio.h>
+#include <string.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -44,8 +45,20 @@
 TIM_HandleTypeDef htim1;
 TIM_HandleTypeDef htim2;
 
-/* USER CODE BEGIN PV */
+UART_HandleTypeDef huart2;
 
+/* USER CODE BEGIN PV */
+int char_flg = 0;
+int idx = 0;
+int cas = 0;
+int err = 0;
+uint8_t dc = 0;
+char *p;
+int ep;
+char error[50];
+uint8_t lazy[2] = {0};
+uint8_t buffer[20] = {0};
+uint8_t chara;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -53,6 +66,7 @@ void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_TIM1_Init(void);
 static void MX_TIM2_Init(void);
+static void MX_USART2_UART_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -93,27 +107,138 @@ int main(void)
   MX_GPIO_Init();
   MX_TIM1_Init();
   MX_TIM2_Init();
+  MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
-    HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
-    HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);
+  HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
+  HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);
+  motor_t mot1 = {.duty    = 0,
+  				  .channel = 1,
+				  .timer = TIM1};
+  motor_t mot2 = {.duty    = 0,
+  				  .channel = 2,
+      			  .timer = TIM1};
+  start_PWM(&htim1);
   /* USER CODE END 2 */
-    motor_t mot1 = {.duty    = 0,
-					.channel = 1,
-    				.timer = TIM1};
+
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  while (1)
-  {
+  HAL_UART_Receive_IT(&huart2,(uint8_t*) &chara,1);
+    while (1)
+    {
+
     /* USER CODE END WHILE */
 
-
-	      // Set the duty cycle
-	      set_duty(&mot1, 42);
-
-	      HAL_Delay(1000);
-	      set_duty(&mot1, -42);
-	      HAL_Delay(1000);
     /* USER CODE BEGIN 3 */
+
+    	if (char_flg){
+    		char_flg = 0;
+
+    		HAL_UART_Transmit(&huart2,(uint8_t*) &chara,1,1);
+    		HAL_UART_Receive_IT(&huart2,(uint8_t*) &chara,1);
+    		buffer[idx] = chara;
+    		idx++;
+
+
+    		if (chara == '\177'){
+    			cas = 1;
+    		}
+    		else if (chara == '\r'){
+    			cas = 2;
+    		}
+    		else{
+    			cas = 0;
+    		}
+
+
+    		switch (cas){
+			case 1:
+				idx--;
+				buffer[idx] = '\0';
+				idx--;
+				buffer[idx] = '\0';
+				break;
+			case 2:
+				if (idx != 5){
+					err = 1;
+					//invalid length
+				}
+				else if (buffer[0] != 'm' && buffer[0] != 'M'){
+					err = 2;
+					//invalid first character
+				}
+				else if (buffer[1] != '1' && buffer[1] != '2'){
+					err = 3;
+					//invalid second character
+				}
+				else if (((buffer[3] < '0' || buffer[3] > '9') && (buffer[3] < 'A' || buffer[3] > 'F')) && ((buffer[2] < '0' || buffer[2] > '9') && (buffer[2] < 'A' || buffer[2] > 'F'))){
+					err = 4;
+					//invalid duty cycle
+				}
+				else{
+					err = 0;
+					lazy[0] = buffer[2];
+					lazy[1] = buffer[3];
+					dc = strtol(lazy,&p,16);
+					if (dc > 127){
+						dc -= 256;
+					}
+					if (buffer[1] - '0' == 1){
+						set_duty(&mot1, dc);
+					}
+					else{
+						set_duty(&mot2, dc);
+					}
+					ep = sprintf(error, "\nSuccess!\n");
+					HAL_UART_Transmit(&huart2,error,ep,400);
+					idx = 0;
+				}
+				break;
+
+    		}
+    		switch (err){
+				case 1:
+					ep = sprintf(error, "\nError 1\n\r");
+					HAL_UART_Transmit(&huart2,error,ep,400);
+					idx = 0;
+					err = 0;
+					set_duty(&mot1,0);
+					set_duty(&mot2,0);
+					break;
+				case 2:
+					ep = sprintf(error, "\nError 2\n\r");
+					HAL_UART_Transmit(&huart2,error,ep,400);
+					idx = 0;
+					err = 0;
+					set_duty(&mot1,0);
+					set_duty(&mot2,0);
+					break;
+				case 3:
+					ep = sprintf(error, "\nError 3\n\r");
+					HAL_UART_Transmit(&huart2,error,ep,400);
+					idx = 0;
+					err = 0;
+					set_duty(&mot1,0);
+					set_duty(&mot2,0);
+					break;
+				case 4:
+					ep = sprintf(error, "\nError 4\n\r");
+					HAL_UART_Transmit(&huart2,error,ep,400);
+					idx = 0;
+					err = 0;
+					set_duty(&mot1,0);
+					set_duty(&mot2,0);
+					break;
+				}
+
+
+
+    	}
+
+//    	set_duty(&mot1, 42);
+//
+//    	HAL_Delay(1000);
+//    	set_duty(&mot1, -42);
+//    	HAL_Delay(1000);
   }
   /* USER CODE END 3 */
 }
@@ -189,7 +314,7 @@ static void MX_TIM1_Init(void)
 
   /* USER CODE END TIM1_Init 1 */
   htim1.Instance = TIM1;
-  htim1.Init.Prescaler = 0;
+  htim1.Init.Prescaler = 8;
   htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
   htim1.Init.Period = 265;
   htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
@@ -216,7 +341,7 @@ static void MX_TIM1_Init(void)
     Error_Handler();
   }
   sConfigOC.OCMode = TIM_OCMODE_PWM1;
-  sConfigOC.Pulse = 265;
+  sConfigOC.Pulse = 0;
   sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
   sConfigOC.OCNPolarity = TIM_OCNPOLARITY_HIGH;
   sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
@@ -227,6 +352,14 @@ static void MX_TIM1_Init(void)
     Error_Handler();
   }
   if (HAL_TIM_PWM_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  if (HAL_TIM_PWM_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_3) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  if (HAL_TIM_PWM_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_4) != HAL_OK)
   {
     Error_Handler();
   }
@@ -271,7 +404,7 @@ static void MX_TIM2_Init(void)
 
   /* USER CODE END TIM2_Init 1 */
   htim2.Instance = TIM2;
-  htim2.Init.Prescaler = 610;
+  htim2.Init.Prescaler = 0;
   htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
   htim2.Init.Period = 4294967295;
   htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
@@ -298,6 +431,41 @@ static void MX_TIM2_Init(void)
 }
 
 /**
+  * @brief USART2 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_USART2_UART_Init(void)
+{
+
+  /* USER CODE BEGIN USART2_Init 0 */
+
+  /* USER CODE END USART2_Init 0 */
+
+  /* USER CODE BEGIN USART2_Init 1 */
+
+  /* USER CODE END USART2_Init 1 */
+  huart2.Instance = USART2;
+  huart2.Init.BaudRate = 115200;
+  huart2.Init.WordLength = UART_WORDLENGTH_8B;
+  huart2.Init.StopBits = UART_STOPBITS_1;
+  huart2.Init.Parity = UART_PARITY_NONE;
+  huart2.Init.Mode = UART_MODE_TX_RX;
+  huart2.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+  huart2.Init.OverSampling = UART_OVERSAMPLING_16;
+  huart2.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
+  huart2.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
+  if (HAL_UART_Init(&huart2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN USART2_Init 2 */
+
+  /* USER CODE END USART2_Init 2 */
+
+}
+
+/**
   * @brief GPIO Initialization Function
   * @param None
   * @retval None
@@ -315,7 +483,13 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{
+  /* Prevent unused argument(s) compilation warning */
+  char_flg = 1;
 
+
+}
 /* USER CODE END 4 */
 
 /**
