@@ -52,7 +52,7 @@ int char_flg = 0;
 int idx = 0;
 int cas = 0;
 int err = 0;
-int8_t dc = 0;
+uint8_t dc = 0;
 char *p;
 int ep;
 char error[50];
@@ -138,6 +138,7 @@ int main(void)
     		buffer[idx] = chara;
     		idx++;
 
+
     		if (chara == '\177'){
     			cas = 1;
     		}
@@ -187,7 +188,7 @@ int main(void)
 					else{
 						set_duty(&mot2, dc);
 					}
-					ep = sprintf(error, "\nSuccess! Setting duty cycle to %d\n\r", dc);
+					ep = sprintf(error, "\nSuccess! Setting duty cycle to %d\n", dc);
 					HAL_UART_Transmit(&huart2,error,ep,400);
 					idx = 0;
 				}

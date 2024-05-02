@@ -2108,3 +2108,541 @@ Finished building: default.size.stdout
  
 Finished building: Lab2.list
  
+14:17:42 **** Incremental Build of configuration Debug for project Lab2 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/motor_driver.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/motor_driver.d" -MT"Core/Src/motor_driver.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/motor_driver.o"
+../Core/Src/motor_driver.c: In function 'set_duty':
+../Core/Src/motor_driver.c:12:42: warning: format '%d' expects argument of type 'int', but argument 2 has type 'int32_t' {aka 'long int'} [-Wformat=]
+   12 |     printf("Setting Motor Duty Cycle to %d", duty);
+      |                                         ~^   ~~~~
+      |                                          |   |
+      |                                          int int32_t {aka long int}
+      |                                         %ld
+../Core/Src/motor_driver.c: In function 'stop_PWM':
+../Core/Src/motor_driver.c:38:26: warning: passing argument 1 of 'HAL_TIM_PWM_Stop' from incompatible pointer type [-Wincompatible-pointer-types]
+   38 |         HAL_TIM_PWM_Stop(&htim, TIM_CHANNEL_1);
+      |                          ^~~~~
+      |                          |
+      |                          TIM_HandleTypeDef **
+In file included from ../Core/Inc/stm32l4xx_hal_conf.h:442,
+                 from ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:29,
+                 from ../Core/Inc/motor_driver.h:8,
+                 from ../Core/Src/motor_driver.c:7:
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim.h:2181:55: note: expected 'TIM_HandleTypeDef *' but argument is of type 'TIM_HandleTypeDef **'
+ 2181 | HAL_StatusTypeDef HAL_TIM_PWM_Stop(TIM_HandleTypeDef *htim, uint32_t Channel);
+      |                                    ~~~~~~~~~~~~~~~~~~~^~~~
+../Core/Src/motor_driver.c:39:26: warning: passing argument 1 of 'HAL_TIM_PWM_Stop' from incompatible pointer type [-Wincompatible-pointer-types]
+   39 |         HAL_TIM_PWM_Stop(&htim, TIM_CHANNEL_2);
+      |                          ^~~~~
+      |                          |
+      |                          TIM_HandleTypeDef **
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim.h:2181:55: note: expected 'TIM_HandleTypeDef *' but argument is of type 'TIM_HandleTypeDef **'
+ 2181 | HAL_StatusTypeDef HAL_TIM_PWM_Stop(TIM_HandleTypeDef *htim, uint32_t Channel);
+      |                                    ~~~~~~~~~~~~~~~~~~~^~~~
+../Core/Src/motor_driver.c:40:26: warning: passing argument 1 of 'HAL_TIM_PWM_Stop' from incompatible pointer type [-Wincompatible-pointer-types]
+   40 |         HAL_TIM_PWM_Stop(&htim, TIM_CHANNEL_3);
+      |                          ^~~~~
+      |                          |
+      |                          TIM_HandleTypeDef **
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim.h:2181:55: note: expected 'TIM_HandleTypeDef *' but argument is of type 'TIM_HandleTypeDef **'
+ 2181 | HAL_StatusTypeDef HAL_TIM_PWM_Stop(TIM_HandleTypeDef *htim, uint32_t Channel);
+      |                                    ~~~~~~~~~~~~~~~~~~~^~~~
+../Core/Src/motor_driver.c:41:26: warning: passing argument 1 of 'HAL_TIM_PWM_Stop' from incompatible pointer type [-Wincompatible-pointer-types]
+   41 |         HAL_TIM_PWM_Stop(&htim, TIM_CHANNEL_4);
+      |                          ^~~~~
+      |                          |
+      |                          TIM_HandleTypeDef **
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim.h:2181:55: note: expected 'TIM_HandleTypeDef *' but argument is of type 'TIM_HandleTypeDef **'
+ 2181 | HAL_StatusTypeDef HAL_TIM_PWM_Stop(TIM_HandleTypeDef *htim, uint32_t Channel);
+      |                                    ~~~~~~~~~~~~~~~~~~~^~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:181:46: warning: implicit declaration of function 'strtol'; did you mean 'strtok'? [-Wimplicit-function-declaration]
+  181 |                                         dc = strtol(lazy,&p,16);
+      |                                              ^~~~~~
+      |                                              strtok
+../Core/Src/main.c:192:67: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  192 |                                         HAL_UART_Transmit(&huart2,error,ep,400);
+      |                                                                   ^~~~~
+      |                                                                   |
+      |                                                                   char *
+In file included from ../Core/Inc/stm32l4xx_hal_conf.h:450,
+                 from ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1697:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+ 1697 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/main.c:201:67: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  201 |                                         HAL_UART_Transmit(&huart2,error,ep,400);
+      |                                                                   ^~~~~
+      |                                                                   |
+      |                                                                   char *
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1697:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+ 1697 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/main.c:209:67: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  209 |                                         HAL_UART_Transmit(&huart2,error,ep,400);
+      |                                                                   ^~~~~
+      |                                                                   |
+      |                                                                   char *
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1697:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+ 1697 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/main.c:217:67: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  217 |                                         HAL_UART_Transmit(&huart2,error,ep,400);
+      |                                                                   ^~~~~
+      |                                                                   |
+      |                                                                   char *
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1697:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+ 1697 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/main.c:225:67: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  225 |                                         HAL_UART_Transmit(&huart2,error,ep,400);
+      |                                                                   ^~~~~
+      |                                                                   |
+      |                                                                   char *
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1697:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+ 1697 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+arm-none-eabi-gcc -o "Lab2.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\magoo\OneDrive\Documents\GitHub\ME-507-Mechatronics-Lab\Lab2\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Lab2.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Lab2.elf
+ 
+arm-none-eabi-size  Lab2.elf 
+arm-none-eabi-objdump -h -S Lab2.elf  > "Lab2.list"
+   text	   data	    bss	    dec	    hex	filename
+  28004	    104	   2304	  30412	   76cc	Lab2.elf
+Finished building: default.size.stdout
+ 
+Finished building: Lab2.list
+ 
+14:18:28 **** Incremental Build of configuration Debug for project Lab2 ****
+make -j8 all 
+arm-none-eabi-size  Lab2.elf 
+   text	   data	    bss	    dec	    hex	filename
+  28004	    104	   2304	  30412	   76cc	Lab2.elf
+Finished building: default.size.stdout
+ 
+14:21:54 **** Incremental Build of configuration Debug for project Lab2 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/motor_driver.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/motor_driver.d" -MT"Core/Src/motor_driver.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/motor_driver.o"
+../Core/Src/motor_driver.c: In function 'set_duty':
+../Core/Src/motor_driver.c:12:42: warning: format '%d' expects argument of type 'int', but argument 2 has type 'int32_t' {aka 'long int'} [-Wformat=]
+   12 |     printf("Setting Motor Duty Cycle to %d", duty);
+      |                                         ~^   ~~~~
+      |                                          |   |
+      |                                          int int32_t {aka long int}
+      |                                         %ld
+../Core/Src/motor_driver.c:15:9: error: 'pmot' undeclared (first use in this function); did you mean 'p_mot'?
+   15 |     if (pmot->channel == 1){
+      |         ^~~~
+      |         p_mot
+../Core/Src/motor_driver.c:15:9: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/motor_driver.c: In function 'stop_PWM':
+../Core/Src/motor_driver.c:52:26: warning: passing argument 1 of 'HAL_TIM_PWM_Stop' from incompatible pointer type [-Wincompatible-pointer-types]
+   52 |         HAL_TIM_PWM_Stop(&htim, TIM_CHANNEL_1);
+      |                          ^~~~~
+      |                          |
+      |                          TIM_HandleTypeDef **
+In file included from ../Core/Inc/stm32l4xx_hal_conf.h:442,
+                 from ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:29,
+                 from ../Core/Inc/motor_driver.h:8,
+                 from ../Core/Src/motor_driver.c:7:
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim.h:2181:55: note: expected 'TIM_HandleTypeDef *' but argument is of type 'TIM_HandleTypeDef **'
+ 2181 | HAL_StatusTypeDef HAL_TIM_PWM_Stop(TIM_HandleTypeDef *htim, uint32_t Channel);
+      |                                    ~~~~~~~~~~~~~~~~~~~^~~~
+../Core/Src/motor_driver.c:53:26: warning: passing argument 1 of 'HAL_TIM_PWM_Stop' from incompatible pointer type [-Wincompatible-pointer-types]
+   53 |         HAL_TIM_PWM_Stop(&htim, TIM_CHANNEL_2);
+      |                          ^~~~~
+      |                          |
+      |                          TIM_HandleTypeDef **
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim.h:2181:55: note: expected 'TIM_HandleTypeDef *' but argument is of type 'TIM_HandleTypeDef **'
+ 2181 | HAL_StatusTypeDef HAL_TIM_PWM_Stop(TIM_HandleTypeDef *htim, uint32_t Channel);
+      |                                    ~~~~~~~~~~~~~~~~~~~^~~~
+../Core/Src/motor_driver.c:54:26: warning: passing argument 1 of 'HAL_TIM_PWM_Stop' from incompatible pointer type [-Wincompatible-pointer-types]
+   54 |         HAL_TIM_PWM_Stop(&htim, TIM_CHANNEL_3);
+      |                          ^~~~~
+      |                          |
+      |                          TIM_HandleTypeDef **
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim.h:2181:55: note: expected 'TIM_HandleTypeDef *' but argument is of type 'TIM_HandleTypeDef **'
+ 2181 | HAL_StatusTypeDef HAL_TIM_PWM_Stop(TIM_HandleTypeDef *htim, uint32_t Channel);
+      |                                    ~~~~~~~~~~~~~~~~~~~^~~~
+../Core/Src/motor_driver.c:55:26: warning: passing argument 1 of 'HAL_TIM_PWM_Stop' from incompatible pointer type [-Wincompatible-pointer-types]
+   55 |         HAL_TIM_PWM_Stop(&htim, TIM_CHANNEL_4);
+      |                          ^~~~~
+      |                          |
+      |                          TIM_HandleTypeDef **
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim.h:2181:55: note: expected 'TIM_HandleTypeDef *' but argument is of type 'TIM_HandleTypeDef **'
+ 2181 | HAL_StatusTypeDef HAL_TIM_PWM_Stop(TIM_HandleTypeDef *htim, uint32_t Channel);
+      |                                    ~~~~~~~~~~~~~~~~~~~^~~~
+make: *** [Core/Src/subdir.mk:37: Core/Src/motor_driver.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+14:22:11 **** Incremental Build of configuration Debug for project Lab2 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/motor_driver.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/motor_driver.d" -MT"Core/Src/motor_driver.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/motor_driver.o"
+../Core/Src/motor_driver.c: In function 'set_duty':
+../Core/Src/motor_driver.c:12:42: warning: format '%d' expects argument of type 'int', but argument 2 has type 'int32_t' {aka 'long int'} [-Wformat=]
+   12 |     printf("Setting Motor Duty Cycle to %d", duty);
+      |                                         ~^   ~~~~
+      |                                          |   |
+      |                                          int int32_t {aka long int}
+      |                                         %ld
+../Core/Src/motor_driver.c: In function 'stop_PWM':
+../Core/Src/motor_driver.c:52:26: warning: passing argument 1 of 'HAL_TIM_PWM_Stop' from incompatible pointer type [-Wincompatible-pointer-types]
+   52 |         HAL_TIM_PWM_Stop(&htim, TIM_CHANNEL_1);
+      |                          ^~~~~
+      |                          |
+      |                          TIM_HandleTypeDef **
+In file included from ../Core/Inc/stm32l4xx_hal_conf.h:442,
+                 from ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:29,
+                 from ../Core/Inc/motor_driver.h:8,
+                 from ../Core/Src/motor_driver.c:7:
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim.h:2181:55: note: expected 'TIM_HandleTypeDef *' but argument is of type 'TIM_HandleTypeDef **'
+ 2181 | HAL_StatusTypeDef HAL_TIM_PWM_Stop(TIM_HandleTypeDef *htim, uint32_t Channel);
+      |                                    ~~~~~~~~~~~~~~~~~~~^~~~
+../Core/Src/motor_driver.c:53:26: warning: passing argument 1 of 'HAL_TIM_PWM_Stop' from incompatible pointer type [-Wincompatible-pointer-types]
+   53 |         HAL_TIM_PWM_Stop(&htim, TIM_CHANNEL_2);
+      |                          ^~~~~
+      |                          |
+      |                          TIM_HandleTypeDef **
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim.h:2181:55: note: expected 'TIM_HandleTypeDef *' but argument is of type 'TIM_HandleTypeDef **'
+ 2181 | HAL_StatusTypeDef HAL_TIM_PWM_Stop(TIM_HandleTypeDef *htim, uint32_t Channel);
+      |                                    ~~~~~~~~~~~~~~~~~~~^~~~
+../Core/Src/motor_driver.c:54:26: warning: passing argument 1 of 'HAL_TIM_PWM_Stop' from incompatible pointer type [-Wincompatible-pointer-types]
+   54 |         HAL_TIM_PWM_Stop(&htim, TIM_CHANNEL_3);
+      |                          ^~~~~
+      |                          |
+      |                          TIM_HandleTypeDef **
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim.h:2181:55: note: expected 'TIM_HandleTypeDef *' but argument is of type 'TIM_HandleTypeDef **'
+ 2181 | HAL_StatusTypeDef HAL_TIM_PWM_Stop(TIM_HandleTypeDef *htim, uint32_t Channel);
+      |                                    ~~~~~~~~~~~~~~~~~~~^~~~
+../Core/Src/motor_driver.c:55:26: warning: passing argument 1 of 'HAL_TIM_PWM_Stop' from incompatible pointer type [-Wincompatible-pointer-types]
+   55 |         HAL_TIM_PWM_Stop(&htim, TIM_CHANNEL_4);
+      |                          ^~~~~
+      |                          |
+      |                          TIM_HandleTypeDef **
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim.h:2181:55: note: expected 'TIM_HandleTypeDef *' but argument is of type 'TIM_HandleTypeDef **'
+ 2181 | HAL_StatusTypeDef HAL_TIM_PWM_Stop(TIM_HandleTypeDef *htim, uint32_t Channel);
+      |                                    ~~~~~~~~~~~~~~~~~~~^~~~
+arm-none-eabi-gcc -o "Lab2.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\magoo\OneDrive\Documents\GitHub\ME-507-Mechatronics-Lab\Lab2\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Lab2.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Lab2.elf
+ 
+arm-none-eabi-size  Lab2.elf 
+arm-none-eabi-objdump -h -S Lab2.elf  > "Lab2.list"
+   text	   data	    bss	    dec	    hex	filename
+  28096	    104	   2304	  30504	   7728	Lab2.elf
+Finished building: default.size.stdout
+ 
+Finished building: Lab2.list
+ 
+14:24:54 **** Incremental Build of configuration Debug for project Lab2 ****
+make -j8 all 
+arm-none-eabi-size  Lab2.elf 
+   text	   data	    bss	    dec	    hex	filename
+  28096	    104	   2304	  30504	   7728	Lab2.elf
+Finished building: default.size.stdout
+ 
+14:26:47 **** Incremental Build of configuration Debug for project Lab2 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:181:46: warning: implicit declaration of function 'strtol'; did you mean 'strtok'? [-Wimplicit-function-declaration]
+  181 |                                         dc = strtol(lazy,&p,16);
+      |                                              ^~~~~~
+      |                                              strtok
+../Core/Src/main.c:192:67: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  192 |                                         HAL_UART_Transmit(&huart2,error,ep,400);
+      |                                                                   ^~~~~
+      |                                                                   |
+      |                                                                   char *
+In file included from ../Core/Inc/stm32l4xx_hal_conf.h:450,
+                 from ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1697:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+ 1697 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/main.c:201:67: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  201 |                                         HAL_UART_Transmit(&huart2,error,ep,400);
+      |                                                                   ^~~~~
+      |                                                                   |
+      |                                                                   char *
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1697:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+ 1697 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/main.c:209:67: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  209 |                                         HAL_UART_Transmit(&huart2,error,ep,400);
+      |                                                                   ^~~~~
+      |                                                                   |
+      |                                                                   char *
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1697:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+ 1697 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/main.c:217:67: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  217 |                                         HAL_UART_Transmit(&huart2,error,ep,400);
+      |                                                                   ^~~~~
+      |                                                                   |
+      |                                                                   char *
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1697:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+ 1697 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/main.c:225:67: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  225 |                                         HAL_UART_Transmit(&huart2,error,ep,400);
+      |                                                                   ^~~~~
+      |                                                                   |
+      |                                                                   char *
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1697:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+ 1697 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+arm-none-eabi-gcc -o "Lab2.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\magoo\OneDrive\Documents\GitHub\ME-507-Mechatronics-Lab\Lab2\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Lab2.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Lab2.elf
+ 
+arm-none-eabi-size  Lab2.elf 
+arm-none-eabi-objdump -h -S Lab2.elf  > "Lab2.list"
+   text	   data	    bss	    dec	    hex	filename
+  28096	    104	   2304	  30504	   7728	Lab2.elf
+Finished building: default.size.stdout
+ 
+Finished building: Lab2.list
+ 
+14:28:17 **** Incremental Build of configuration Debug for project Lab2 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:181:46: warning: implicit declaration of function 'strtol'; did you mean 'strtok'? [-Wimplicit-function-declaration]
+  181 |                                         dc = strtol(lazy,&p,16);
+      |                                              ^~~~~~
+      |                                              strtok
+../Core/Src/main.c:192:67: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  192 |                                         HAL_UART_Transmit(&huart2,error,ep,400);
+      |                                                                   ^~~~~
+      |                                                                   |
+      |                                                                   char *
+In file included from ../Core/Inc/stm32l4xx_hal_conf.h:450,
+                 from ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1697:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+ 1697 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/main.c:201:67: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  201 |                                         HAL_UART_Transmit(&huart2,error,ep,400);
+      |                                                                   ^~~~~
+      |                                                                   |
+      |                                                                   char *
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1697:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+ 1697 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/main.c:209:67: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  209 |                                         HAL_UART_Transmit(&huart2,error,ep,400);
+      |                                                                   ^~~~~
+      |                                                                   |
+      |                                                                   char *
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1697:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+ 1697 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/main.c:217:67: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  217 |                                         HAL_UART_Transmit(&huart2,error,ep,400);
+      |                                                                   ^~~~~
+      |                                                                   |
+      |                                                                   char *
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1697:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+ 1697 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/main.c:225:67: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  225 |                                         HAL_UART_Transmit(&huart2,error,ep,400);
+      |                                                                   ^~~~~
+      |                                                                   |
+      |                                                                   char *
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1697:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+ 1697 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+arm-none-eabi-gcc -o "Lab2.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\magoo\OneDrive\Documents\GitHub\ME-507-Mechatronics-Lab\Lab2\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Lab2.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Lab2.elf
+ 
+arm-none-eabi-size  Lab2.elf 
+arm-none-eabi-objdump -h -S Lab2.elf  > "Lab2.list"
+   text	   data	    bss	    dec	    hex	filename
+  28084	    104	   2304	  30492	   771c	Lab2.elf
+Finished building: default.size.stdout
+ 
+Finished building: Lab2.list
+ 
+14:29:23 **** Incremental Build of configuration Debug for project Lab2 ****
+make -j8 all 
+arm-none-eabi-size  Lab2.elf 
+   text	   data	    bss	    dec	    hex	filename
+  28084	    104	   2304	  30492	   771c	Lab2.elf
+Finished building: default.size.stdout
+ 
+14:31:10 **** Incremental Build of configuration Debug for project Lab2 ****
+make -j8 all 
+arm-none-eabi-size  Lab2.elf 
+   text	   data	    bss	    dec	    hex	filename
+  28084	    104	   2304	  30492	   771c	Lab2.elf
+Finished building: default.size.stdout
+ 
+14:33:35 **** Incremental Build of configuration Debug for project Lab2 ****
+make -j8 all 
+arm-none-eabi-size  Lab2.elf 
+   text	   data	    bss	    dec	    hex	filename
+  28084	    104	   2304	  30492	   771c	Lab2.elf
+Finished building: default.size.stdout
+ 
+14:38:17 **** Incremental Build of configuration Debug for project Lab2 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/motor_driver.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/motor_driver.d" -MT"Core/Src/motor_driver.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/motor_driver.o"
+../Core/Src/motor_driver.c: In function 'set_duty':
+../Core/Src/motor_driver.c:12:42: warning: format '%d' expects argument of type 'int', but argument 2 has type 'int32_t' {aka 'long int'} [-Wformat=]
+   12 |     printf("Setting Motor Duty Cycle to %d", duty);
+      |                                         ~^   ~~~~
+      |                                          |   |
+      |                                          int int32_t {aka long int}
+      |                                         %ld
+../Core/Src/motor_driver.c: In function 'stop_PWM':
+../Core/Src/motor_driver.c:52:26: warning: passing argument 1 of 'HAL_TIM_PWM_Stop' from incompatible pointer type [-Wincompatible-pointer-types]
+   52 |         HAL_TIM_PWM_Stop(&htim, TIM_CHANNEL_1);
+      |                          ^~~~~
+      |                          |
+      |                          TIM_HandleTypeDef **
+In file included from ../Core/Inc/stm32l4xx_hal_conf.h:442,
+                 from ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:29,
+                 from ../Core/Inc/motor_driver.h:8,
+                 from ../Core/Src/motor_driver.c:7:
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim.h:2181:55: note: expected 'TIM_HandleTypeDef *' but argument is of type 'TIM_HandleTypeDef **'
+ 2181 | HAL_StatusTypeDef HAL_TIM_PWM_Stop(TIM_HandleTypeDef *htim, uint32_t Channel);
+      |                                    ~~~~~~~~~~~~~~~~~~~^~~~
+../Core/Src/motor_driver.c:53:26: warning: passing argument 1 of 'HAL_TIM_PWM_Stop' from incompatible pointer type [-Wincompatible-pointer-types]
+   53 |         HAL_TIM_PWM_Stop(&htim, TIM_CHANNEL_2);
+      |                          ^~~~~
+      |                          |
+      |                          TIM_HandleTypeDef **
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim.h:2181:55: note: expected 'TIM_HandleTypeDef *' but argument is of type 'TIM_HandleTypeDef **'
+ 2181 | HAL_StatusTypeDef HAL_TIM_PWM_Stop(TIM_HandleTypeDef *htim, uint32_t Channel);
+      |                                    ~~~~~~~~~~~~~~~~~~~^~~~
+../Core/Src/motor_driver.c:54:26: warning: passing argument 1 of 'HAL_TIM_PWM_Stop' from incompatible pointer type [-Wincompatible-pointer-types]
+   54 |         HAL_TIM_PWM_Stop(&htim, TIM_CHANNEL_3);
+      |                          ^~~~~
+      |                          |
+      |                          TIM_HandleTypeDef **
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim.h:2181:55: note: expected 'TIM_HandleTypeDef *' but argument is of type 'TIM_HandleTypeDef **'
+ 2181 | HAL_StatusTypeDef HAL_TIM_PWM_Stop(TIM_HandleTypeDef *htim, uint32_t Channel);
+      |                                    ~~~~~~~~~~~~~~~~~~~^~~~
+../Core/Src/motor_driver.c:55:26: warning: passing argument 1 of 'HAL_TIM_PWM_Stop' from incompatible pointer type [-Wincompatible-pointer-types]
+   55 |         HAL_TIM_PWM_Stop(&htim, TIM_CHANNEL_4);
+      |                          ^~~~~
+      |                          |
+      |                          TIM_HandleTypeDef **
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim.h:2181:55: note: expected 'TIM_HandleTypeDef *' but argument is of type 'TIM_HandleTypeDef **'
+ 2181 | HAL_StatusTypeDef HAL_TIM_PWM_Stop(TIM_HandleTypeDef *htim, uint32_t Channel);
+      |                                    ~~~~~~~~~~~~~~~~~~~^~~~
+arm-none-eabi-gcc -o "Lab2.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\magoo\OneDrive\Documents\GitHub\ME-507-Mechatronics-Lab\Lab2\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Lab2.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Lab2.elf
+ 
+arm-none-eabi-size  Lab2.elf 
+arm-none-eabi-objdump -h -S Lab2.elf  > "Lab2.list"
+   text	   data	    bss	    dec	    hex	filename
+  28084	    104	   2304	  30492	   771c	Lab2.elf
+Finished building: default.size.stdout
+ 
+Finished building: Lab2.list
+ 
+14:40:31 **** Incremental Build of configuration Debug for project Lab2 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/motor_driver.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/motor_driver.d" -MT"Core/Src/motor_driver.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/motor_driver.o"
+../Core/Src/motor_driver.c: In function 'set_duty':
+../Core/Src/motor_driver.c:12:42: warning: format '%d' expects argument of type 'int', but argument 2 has type 'int32_t' {aka 'long int'} [-Wformat=]
+   12 |     printf("Setting Motor Duty Cycle to %d", duty);
+      |                                         ~^   ~~~~
+      |                                          |   |
+      |                                          int int32_t {aka long int}
+      |                                         %ld
+arm-none-eabi-gcc -o "Lab2.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\magoo\OneDrive\Documents\GitHub\ME-507-Mechatronics-Lab\Lab2\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Lab2.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Lab2.elf
+ 
+arm-none-eabi-size  Lab2.elf 
+arm-none-eabi-objdump -h -S Lab2.elf  > "Lab2.list"
+   text	   data	    bss	    dec	    hex	filename
+  28064	    104	   2304	  30472	   7708	Lab2.elf
+Finished building: default.size.stdout
+ 
+Finished building: Lab2.list
+ 
+14:54:26 **** Incremental Build of configuration Debug for project Lab2 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/motor_driver.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/motor_driver.d" -MT"Core/Src/motor_driver.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/motor_driver.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:180:46: warning: implicit declaration of function 'strtol'; did you mean 'strtok'? [-Wimplicit-function-declaration]
+  180 |                                         dc = strtol(lazy,&p,16);
+      |                                              ^~~~~~
+      |                                              strtok
+../Core/Src/main.c:191:67: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  191 |                                         HAL_UART_Transmit(&huart2,error,ep,400);
+      |                                                                   ^~~~~
+      |                                                                   |
+      |                                                                   char *
+In file included from ../Core/Inc/stm32l4xx_hal_conf.h:450,
+                 from ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1697:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+ 1697 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/main.c:200:67: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  200 |                                         HAL_UART_Transmit(&huart2,error,ep,400);
+      |                                                                   ^~~~~
+      |                                                                   |
+      |                                                                   char *
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1697:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+ 1697 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/main.c:208:67: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  208 |                                         HAL_UART_Transmit(&huart2,error,ep,400);
+      |                                                                   ^~~~~
+      |                                                                   |
+      |                                                                   char *
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1697:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+ 1697 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/main.c:216:67: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  216 |                                         HAL_UART_Transmit(&huart2,error,ep,400);
+      |                                                                   ^~~~~
+      |                                                                   |
+      |                                                                   char *
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1697:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+ 1697 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/main.c:224:67: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  224 |                                         HAL_UART_Transmit(&huart2,error,ep,400);
+      |                                                                   ^~~~~
+      |                                                                   |
+      |                                                                   char *
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1697:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+ 1697 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/motor_driver.c: In function 'set_duty':
+../Core/Src/motor_driver.c:12:42: warning: format '%d' expects argument of type 'int', but argument 2 has type 'int32_t' {aka 'long int'} [-Wformat=]
+   12 |     printf("Setting Motor Duty Cycle to %d", duty);
+      |                                         ~^   ~~~~
+      |                                          |   |
+      |                                          int int32_t {aka long int}
+      |                                         %ld
+arm-none-eabi-gcc -o "Lab2.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\magoo\OneDrive\Documents\GitHub\ME-507-Mechatronics-Lab\Lab2\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Lab2.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Lab2.elf
+ 
+arm-none-eabi-size  Lab2.elf 
+arm-none-eabi-objdump -h -S Lab2.elf  > "Lab2.list"
+   text	   data	    bss	    dec	    hex	filename
+  28068	    104	   2304	  30476	   770c	Lab2.elf
+Finished building: default.size.stdout
+ 
+Finished building: Lab2.list
+ 
+14:54:52 **** Incremental Build of configuration Debug for project Lab2 ****
+make -j8 all 
+arm-none-eabi-size  Lab2.elf 
+   text	   data	    bss	    dec	    hex	filename
+  28068	    104	   2304	  30476	   770c	Lab2.elf
+Finished building: default.size.stdout
+ 

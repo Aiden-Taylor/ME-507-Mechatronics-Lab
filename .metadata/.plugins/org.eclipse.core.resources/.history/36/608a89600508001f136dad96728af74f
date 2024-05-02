@@ -26,7 +26,7 @@ void set_duty(motor_t* p_mot, int32_t duty){
 			}
     }
     else{
-    		if (duty>=0){
+    	if (duty>=0){
 				duty = duty*265/128;
 				p_mot->timer->CCR3 = duty;
 				p_mot->timer->CCR4 = 0;
