@@ -1,0 +1,21 @@
+15:00:13 **** Incremental Build of configuration Debug for project Lab3 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:118:11: warning: unused variable 'mot2' [-Wunused-variable]
+  118 |   motor_t mot2 = {.duty    = 0,
+      |           ^~~~
+arm-none-eabi-gcc -o "Lab3.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\magoo\OneDrive\Documents\GitHub\ME-507-Mechatronics-Lab\Lab3\STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Lab3.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Lab3.elf
+ 
+arm-none-eabi-size  Lab3.elf 
+arm-none-eabi-objdump -h -S Lab3.elf  > "Lab3.list"
+   text	   data	    bss	    dec	    hex	filename
+  16044	    104	   2072	  18220	   472c	Lab3.elf
+Finished building: default.size.stdout
+ 
+Finished building: Lab3.list
+ 
+
+15:00:14 Build Finished. 0 errors, 1 warnings. (took 765ms)
+
