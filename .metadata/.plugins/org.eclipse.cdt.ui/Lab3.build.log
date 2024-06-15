@@ -1,50 +1,10 @@
-13:23:48 **** Incremental Build of configuration Debug for project Lab3 ****
+13:50:44 **** Build of configuration Debug for project Lab3 ****
 make -j8 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:149:47: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
-  149 |           n = sprintf(buffer, "Chan 1 Width: %d \r\n", usWidth);
-      |                                              ~^        ~~~~~~~
-      |                                               |        |
-      |                                               int      uint32_t {aka long unsigned int}
-      |                                              %ld
-../Core/Src/main.c:150:37: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
-  150 |           HAL_UART_Transmit(&huart1,buffer,n,400);
-      |                                     ^~~~~~
-      |                                     |
-      |                                     char *
-In file included from ../Core/Inc/stm32f4xx_hal_conf.h:411,
-                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
-                 from ../Core/Inc/main.h:30,
-                 from ../Core/Src/main.c:20:
-../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:745:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
-  745 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
-      |                                                                ~~~~~~~~~~~~~~~^~~~~
-../Core/Src/main.c:151:47: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
-  151 |           n = sprintf(buffer, "Chan 2 Width: %d \r\n", usWidth2);
-      |                                              ~^        ~~~~~~~~
-      |                                               |        |
-      |                                               int      uint32_t {aka long unsigned int}
-      |                                              %ld
-../Core/Src/main.c:152:37: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
-  152 |           HAL_UART_Transmit(&huart1,buffer,n,400);
-      |                                     ^~~~~~
-      |                                     |
-      |                                     char *
-../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:745:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
-  745 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
-      |                                                                ~~~~~~~~~~~~~~~^~~~~
-arm-none-eabi-gcc -o "Lab3.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\magoo\OneDrive\Documents\GitHub\ME-507-Mechatronics-Lab\Lab3\STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Lab3.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: Lab3.elf
- 
 arm-none-eabi-size  Lab3.elf 
-arm-none-eabi-objdump -h -S Lab3.elf  > "Lab3.list"
    text	   data	    bss	    dec	    hex	filename
   19828	    128	   2224	  22180	   56a4	Lab3.elf
 Finished building: default.size.stdout
  
-Finished building: Lab3.list
- 
 
-13:23:50 Build Finished. 0 errors, 4 warnings. (took 1s.769ms)
+13:50:46 Build Finished. 0 errors, 0 warnings. (took 1s.519ms)
 
